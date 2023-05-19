@@ -1,29 +1,39 @@
+import sqlite3
+import os
+from pathlib import Path
 from random import randint
+from characterClasses import KnightCharacter
 from faker import Faker
 
-faker = Faker()
+# create table if it doesn't exist
 
 
-class BaseCharacter:
-    def __init__(self, name, level):
-        self.name = name
-        self.level = level
-
-    def __str__(self):
-        return f"{self.name} is level {self.level}."
-
-
-class KnightCharacter(BaseCharacter):
-    def __init__(self, name, level):
-        self.name = name
-        self.level = level
-        self.attack = 7 * self.level
-        self.health = 30 * self.level
-
-    def __str__(self):
-        return f"{self.name} is level {self.level} with {self.attack} attack and {self.health} health."
+def does_table_exist():
+    if not os.path.exists("characters.db"):
+        Path("characters.db").touch(exist_ok=True)
+    connection = sqlite3.connect("characters.db")
+    cursor = connection.cursor()
+    create_table = "CREATE TABLE IF NOT EXISTS characters (id INTEGER PRIMARY KEY AUTOINCREMENT, name text, level integer, attack integer, health integer)"
+    cursor.execute(create_table)
+    connection.commit()
+    connection.close()
 
 
-for index, obj in enumerate(range(10)):
-    char = KnightCharacter(faker.name(), randint(1, 10))
-    print(f'{index+1}: {char}')
+def populate_data(number_of_records):
+    faker = Faker()
+    for i in range(number_of_records):
+        char = KnightCharacter(faker.name(), randint(1, 10))
+        char_tuple = (char.name, char.level, char.attack, char.health)
+        insert_query = "INSERT INTO characters (name, level, attack, health) VALUES (?, ?, ?, ?)"
+        cursor.execute(insert_query, char_tuple)
+
+
+does_table_exist()
+
+connection = sqlite3.connect("characters.db")
+cursor = connection.cursor()
+
+populate_data(100)
+
+connection.commit()
+connection.close()
