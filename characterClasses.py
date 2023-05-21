@@ -43,11 +43,14 @@ class KnightCharacter(BaseCharacter):
         return level
 
     def calculate_attack(self, weapon_proficiency=0, personal_trait=0):
-        randint(1, 20) + self.stats["Strength"]\
+        return randint(1, 20) + self.stats["Strength"]\
             + weapon_proficiency + personal_trait
 
-    def calculate_health(self):
-        pass
+    def calculate_health(self, tough_trait=False):
+        if tough_trait:
+            return (self.level + self.stats["Constitution"]) * 7
+        else:
+            return (self.level + self.stats["Constitution"]) * 4
 
     def calculate_defense(self):
         pass
