@@ -52,5 +52,5 @@ class KnightCharacter(BaseCharacter):
         else:
             return (self.level + self.stats["Constitution"]) * 4
 
-    def calculate_defense(self):
-        pass
+    def calculate_defense(self, armor=None, shield=None, ability_modifiers=None):
+        10 + (self.level)/2 + armor + shield + ability_modifiers
