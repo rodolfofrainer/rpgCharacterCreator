@@ -42,7 +42,7 @@ def populate_data(number_of_characters=100):
                        experience_points, json.dumps(stats)))
 
 
-populate_data(100)
+# populate_data(100)
 
 
 # Commit changes and close connection

@@ -1,3 +1,6 @@
+from random import randint
+
+
 class BaseCharacter:
     def __init__(self, name, level):
         self.name = name
@@ -39,8 +42,9 @@ class KnightCharacter(BaseCharacter):
                 level = i + 1
         return level
 
-    def calculate_attack(self):
-        pass
+    def calculate_attack(self, weapon_proficiency=0, personal_trait=0):
+        randint(1, 20) + self.stats["Strength"]\
+            + weapon_proficiency + personal_trait
 
     def calculate_health(self):
         pass
