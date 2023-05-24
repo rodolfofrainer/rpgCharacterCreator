@@ -2,7 +2,6 @@ import sqlite3
 import os
 from pathlib import Path
 from random import randint
-from characterClasses import KnightCharacter
 from character_creator import CharacterCreator
 from pdfSheet import characterSheet
 
@@ -20,15 +19,16 @@ create_table = "CREATE TABLE IF NOT EXISTS characters (id INTEGER PRIMARY KEY AU
 cursor.execute(create_table)
 
 # Create character
-createCharacter = CharacterCreator()
-createCharacter.createCharacter()
-cursor.execute(createCharacter.insert_query, createCharacter.values)
+character = CharacterCreator()
+character.create_character()
+cursor.execute(character.insert_query, character.values)
 print("Character created and saved.")
 
 # Instantiation of inherited class
 pdf = characterSheet()
+pdf.character_information(character)
 pdf.add_page()
-pdf_path = f"character_sheets/{createCharacter.values[0]}_Sheet.pdf"
+pdf_path = f"character_sheets/{character.values[0]}_Sheet.pdf"
 pdf.output(pdf_path)
 
 # Commit changes and close connection
@@ -36,5 +36,5 @@ connection.commit()
 connection.close()
 
 
-# populate database with 100 entries
+# populate database with x entries
 # populate_data(100)

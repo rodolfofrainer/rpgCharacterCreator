@@ -6,7 +6,7 @@ class CharacterCreator():
         self.insert_query = insert_query
         self.values = values
 
-    def createCharacter(self):
+    def create_character(self):
         character_name = input("What is your character's name? ")
         race_options = ["Human", "Elf", "Dwarf",
                         "Halfling", "Gnome", "Half-Elf", "Half-Orc"]
