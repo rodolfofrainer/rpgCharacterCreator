@@ -4,6 +4,7 @@ from pathlib import Path
 from random import randint
 from characterClasses import KnightCharacter
 from character_creator import CharacterCreator
+from pdfSheet import characterSheet
 
 
 # Create database if it doesn't exist
@@ -24,6 +25,11 @@ createCharacter.createCharacter()
 cursor.execute(createCharacter.insert_query, createCharacter.values)
 print("Character created and saved.")
 
+# Instantiation of inherited class
+pdf = characterSheet()
+pdf.add_page()
+pdf_path = f"character_sheets/{createCharacter.values[0]}_Sheet.pdf"
+pdf.output(pdf_path)
 
 # Commit changes and close connection
 connection.commit()
