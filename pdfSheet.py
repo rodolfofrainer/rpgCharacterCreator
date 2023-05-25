@@ -29,10 +29,26 @@ class characterSheet(FPDF):
         self.cell(43, 12, f"{self.alignment.title()}", ln=1)
         # strength stat:
         self.set_font("helvetica", "B", 24)
-        self.ln(12)
+        self.ln(12.2)
         self.cell(2, 5)
         self.cell(5, 5, f"{self.stats.split()[1][:-1]}")
         # dexterity stat:
-        self.ln(30)
-        self.cell(3, 5)
+        self.ln(30.8)
+        self.cell(2, 5)
         self.cell(5, 5, f"{self.stats.split()[3][:-1]}")
+        # constitution stat:
+        self.ln(28)
+        self.cell(2, 5)
+        self.cell(5, 5, f"{self.stats.split()[5][:-1]}")
+        # intelligence stat:
+        self.ln(28)
+        self.cell(2, 5)
+        self.cell(5, 5, f"{self.stats.split()[7][:-1]}")
+        # wisdom stat:
+        self.ln(28.2)
+        self.cell(2, 5)
+        self.cell(5, 5, f"{self.stats.split()[9][:-1]}")
+        # charisma stat:
+        self.ln(28.3)
+        self.cell(2, 5)
+        self.cell(5, 5, f"{self.stats.split()[11][:-1]}")
