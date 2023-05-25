@@ -15,7 +15,7 @@ connection = sqlite3.connect("characters.db")
 cursor = connection.cursor()
 
 # Create table if it doesn't exist
-create_table = "CREATE TABLE IF NOT EXISTS characters (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, race TEXT, alignment TEXT, experience_points INTEGER, stats TEXT)"
+create_table = "CREATE TABLE IF NOT EXISTS characters (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, class TEXT, race TEXT, alignment TEXT, experience_points INTEGER, stats TEXT)"
 cursor.execute(create_table)
 
 # Create character
